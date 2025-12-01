@@ -1,7 +1,29 @@
 import 'package:flutter/material.dart';
-import 'home.dart'; // ⭐ IMPORTA A HOME CORRETA
+import 'package:firebase_core/firebase_core.dart';
+// Certifique-se de que o caminho do pacote está correto para o seu projeto.
+// Se o nome do seu projeto no pubspec.yaml for 'erp_simples', mantenha assim.
+import 'package:erp_simples/firebase_options.dart';
 
-void main() {
+// Importações das páginas
+import 'home.dart';
+import 'client_page.dart';
+import 'service_page.dart';
+import 'delivery_page.dart';
+
+void main() async {
+  // 1. Garante que o motor do Flutter esteja pronto antes de chamar código nativo
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // 2. Inicializa o Firebase
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    debugPrint('Erro ao inicializar Firebase: $e');
+  }
+
+  // 3. Roda o aplicativo
   runApp(const MyApp());
 }
 
@@ -13,21 +35,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ERP Simples',
-
-      home: const LoginPage(),
-
+      theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
+      // Define a rota inicial
+      initialRoute: '/login',
+      // Mapa de Rotas
       routes: {
         '/login': (context) => const LoginPage(),
-        '/home': (context) => const HomePage(), // ⭐ HOME CORRETA
+        '/home': (context) => const HomePage(),
+        '/clientes': (context) => const ClientPage(),
+        '/servicos': (context) => const ServicePage(),
+        '/entregas': (context) => const DeliveryPage(),
       },
     );
   }
 }
 
-// ===================================================================
-// LOGIN PAGE
-// ===================================================================
-
+// Tela de Login Simples
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
@@ -35,20 +58,10 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFE5E5E5),
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: const Text(
-          "ONSERVICE",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
-        ),
-        centerTitle: true,
-      ),
-
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Botão título
               Container(
                 padding: const EdgeInsets.symmetric(
                   vertical: 14,
@@ -59,7 +72,7 @@ class LoginPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: const Text(
-                  "Boas vindas !",
+                  "Boas vindas!",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 22,
@@ -67,78 +80,35 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-
               const SizedBox(height: 40),
-
-              // Card com formulário
               Container(
                 width: 300,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(25),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Login :"),
-                    const SizedBox(height: 5),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: const TextField(
-                        decoration: InputDecoration(border: InputBorder.none),
-                      ),
+                    const TextField(
+                      decoration: InputDecoration(labelText: "Login"),
                     ),
-
-                    const SizedBox(height: 20),
-
-                    const Text("Senha :"),
-                    const SizedBox(height: 5),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: const TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(border: InputBorder.none),
-                      ),
+                    const SizedBox(height: 15),
+                    const TextField(
+                      decoration: InputDecoration(labelText: "Senha"),
+                      obscureText: true,
                     ),
-
                     const SizedBox(height: 20),
-
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushReplacementNamed(
-                            context,
-                            '/home',
-                          ); // AGORA VAI PARA A HOME CERTA
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 40,
-                            vertical: 12,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        child: const Text("enviar"),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Navega para a Home e remove o Login da pilha de volta
+                        Navigator.pushReplacementNamed(context, '/home');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white,
                       ),
+                      child: const Text("Entrar"),
                     ),
                   ],
                 ),
