@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "115505381722",
+    "project_id": "erp-simples-pic",
+    "storage_bucket": "erp-simples-pic.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:115505381722:android:8fe9d76ecc5a7dcedbf363",
+        "android_client_info": {
+          "package_name": "com.example.erp_simples"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa6t2eOCnRkh-oJ5yc8fj6KdxJDo27Po8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
