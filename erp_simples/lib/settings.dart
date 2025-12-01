@@ -12,10 +12,7 @@ class SettingsPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: const Center(
-        child: Text(
-          "Página de Configurações",
-          style: TextStyle(fontSize: 20),
-        ),
+        child: Text("Página de Configurações", style: TextStyle(fontSize: 20)),
       ),
     );
   }

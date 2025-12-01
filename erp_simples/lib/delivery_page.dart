@@ -21,7 +21,8 @@ class _DeliveryPageState extends State<DeliveryPage> {
     );
     if (picked != null) {
       // Formata a data para o formato dd/MM/yyyy
-      String formattedDate = "${picked.day.toString().padLeft(2, '0')}/${picked.month.toString().padLeft(2, '0')}/${picked.year}";
+      String formattedDate =
+          "${picked.day.toString().padLeft(2, '0')}/${picked.month.toString().padLeft(2, '0')}/${picked.year}";
       setState(() {
         _dateController.text = formattedDate;
       });
@@ -37,7 +38,10 @@ class _DeliveryPageState extends State<DeliveryPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('$labelText :', style: const TextStyle(fontSize: 14, color: Colors.black54)),
+        Text(
+          '$labelText :',
+          style: const TextStyle(fontSize: 14, color: Colors.black54),
+        ),
         const SizedBox(height: 5),
         TextField(
           decoration: const InputDecoration(
@@ -66,7 +70,7 @@ class _DeliveryPageState extends State<DeliveryPage> {
           Padding(
             padding: EdgeInsets.only(right: 12),
             child: Icon(Icons.settings, color: Colors.white),
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -77,10 +81,14 @@ class _DeliveryPageState extends State<DeliveryPage> {
               padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
               child: Text(
                 "agenda menu",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal, color: Colors.black),
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black,
+                ),
               ),
             ),
-            
+
             // Botão/Título "Agendar nova entrega"
             Center(
               child: Container(
@@ -94,7 +102,11 @@ class _DeliveryPageState extends State<DeliveryPage> {
                 child: const Center(
                   child: Text(
                     "Agendar nova entrega",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -127,7 +139,10 @@ class _DeliveryPageState extends State<DeliveryPage> {
                     const SizedBox(height: 15),
 
                     // Campo Descrição Adicional (Multilinha)
-                    _buildTextField(labelText: 'Descrição adicional', maxLines: 4),
+                    _buildTextField(
+                      labelText: 'Descrição adicional',
+                      maxLines: 4,
+                    ),
                     const SizedBox(height: 15),
 
                     _buildTextField(labelText: 'Local da entrega'),
@@ -137,18 +152,28 @@ class _DeliveryPageState extends State<DeliveryPage> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text('data :', style: TextStyle(fontSize: 14, color: Colors.black54)),
+                        const Text(
+                          'data :',
+                          style: TextStyle(fontSize: 14, color: Colors.black54),
+                        ),
                         const SizedBox(width: 8),
                         Expanded(
                           child: TextField(
                             controller: _dateController,
-                            readOnly: true, // Impede que o usuário digite a data
+                            readOnly:
+                                true, // Impede que o usuário digite a data
                             decoration: InputDecoration(
                               hintText: '00/00/0000',
                               border: const OutlineInputBorder(),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
                               suffixIcon: IconButton(
-                                icon: const Icon(Icons.calendar_today, color: Colors.red), // Ícone de calendário vermelho
+                                icon: const Icon(
+                                  Icons.calendar_today,
+                                  color: Colors.red,
+                                ), // Ícone de calendário vermelho
                                 onPressed: () => _selectDate(context),
                               ),
                             ),
@@ -169,12 +194,18 @@ class _DeliveryPageState extends State<DeliveryPage> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF1E73FF),
                         foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 40,
+                          vertical: 12,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      child: const Text('salvar', style: TextStyle(fontSize: 16)),
+                      child: const Text(
+                        'salvar',
+                        style: TextStyle(fontSize: 16),
+                      ),
                     ),
                   ],
                 ),

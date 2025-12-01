@@ -11,6 +11,11 @@ class Cliente {
   final String documentoCliente;
   final String emailCliente;
 
+  // No seu formulário, você adicionou Celular, que pode ser armazenado no campo
+  // 'telefoneCliente' do modelo original (embora ele não esteja sendo usado aqui,
+  // o Firestore aceitaria o campo se estivesse no map).
+  // Vou manter o modelo como estava, focando nos campos essenciais:
+
   Cliente({
     required this.id,
     required this.nomeCliente,

@@ -50,7 +50,10 @@ class LoginPage extends StatelessWidget {
             children: [
               // Botão título
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 30),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 14,
+                  horizontal: 30,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.blue,
                   borderRadius: BorderRadius.circular(30),
@@ -93,7 +96,9 @@ class LoginPage extends StatelessWidget {
                         color: Colors.grey[300],
                         borderRadius: BorderRadius.circular(6),
                       ),
-                      child: const TextField(decoration: InputDecoration(border: InputBorder.none)),
+                      child: const TextField(
+                        decoration: InputDecoration(border: InputBorder.none),
+                      ),
                     ),
 
                     const SizedBox(height: 20),
@@ -117,12 +122,17 @@ class LoginPage extends StatelessWidget {
                     Center(
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushReplacementNamed(context, '/home'); // AGORA VAI PARA A HOME CERTA
+                          Navigator.pushReplacementNamed(
+                            context,
+                            '/home',
+                          ); // AGORA VAI PARA A HOME CERTA
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 12),
+                            horizontal: 40,
+                            vertical: 12,
+                          ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
